@@ -24,7 +24,8 @@ jobs:
       - run: npm ci
       - run: npm test
         env:
-          FORCE_COLOR: 1
+          FORCE_COLOR: true
+          TERM: xterm-256color
       - run: npm run lint
       - run: npm run build
       - run: npm pack
@@ -52,6 +53,6 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm install -g codecov
+      - run: npm install -g codecov @vitest/coverage-c8
       - run: npm test -- --coverage
       - run: codecov
