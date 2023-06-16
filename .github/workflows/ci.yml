@@ -2,7 +2,7 @@ name: Node.js CI
 
 on:
   push:
-    branches: ['main', 'moge']
+    branches: ['main']
   pull_request:
     branches: ['main']
 
@@ -12,15 +12,14 @@ jobs:
 
     strategy:
       matrix:
-        node: ['14', '16', '17']
+        node-version: ['16']
 
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
       - run: npm ci
       - run: npm test
       - run: npm run lint
