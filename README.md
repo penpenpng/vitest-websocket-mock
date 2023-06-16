@@ -1,5 +1,7 @@
 # Jest websocket mock
 
+moga
+
 [![npm version](https://badge.fury.io/js/jest-websocket-mock.svg)](https://badge.fury.io/js/jest-websocket-mock)
 [![Build Status](https://github.com/romgain/jest-websocket-mock/actions/workflows/ci.yml/badge.svg)](https://github.com/romgain/jest-websocket-mock/actions)
 [![Coverage report](https://codecov.io/gh/romgain/jest-websocket-mock/branch/master/graph/badge.svg)](https://codecov.io/gh/romgain/jest-websocket-mock)
