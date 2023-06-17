@@ -8,7 +8,7 @@
     "react-dom": "^18.2.0"
   },
   "peerDependencies": {
-    "vitest-websocket-mock": "^0.1.0"
+    "vitest-websocket-mock": "file:../../"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -23,7 +23,7 @@
     "jsdom": "^22.1.0",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",
-    "vitest": "^0.31.0"
+    "vitest": "^0.32.0"
   },
   "scripts": {
     "dev": "vite",
