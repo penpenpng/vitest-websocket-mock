@@ -26,19 +26,19 @@ jobs:
       - run: npm run lint
       - run: npm run build
       - run: npm pack
-      # # Run the tests in the examples folder
+      # Run the tests in the examples folder
       # # redux-saga:
       # - run: |
       #     cd examples/redux-saga
       #     npm install
       #     npm install ../../jest-websocket-mock-*
       #     npm test -- --coverage
-      # # hooks:
-      # - run: |
-      #     cd examples/hooks
-      #     npm install
-      #     npm install ../../jest-websocket-mock-*
-      #     npm test -- --coverage
+      - name: test examples/hooks
+        run: |
+          cd examples/hooks
+          npm install
+          npm install ../../vitest-websocket-mock-*
+          npm test -- --coverage
 
   coverage:
     needs: build

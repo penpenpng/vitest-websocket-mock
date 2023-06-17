@@ -50,7 +50,8 @@ export default class WS {
     this.serializer = jsonProtocol ? JSON.stringify : identity;
     this.deserializer = jsonProtocol ? JSON.parse : identity;
 
-    let connectionResolver: (socket: Client) => void, closedResolver!: (socket: Client) => void;
+    let connectionResolver: (socket: Client) => void;
+    let closedResolver!: (socket: Client) => void;
     this._isConnected = new Promise((done) => (connectionResolver = done));
     this._isClosed = new Promise((done) => (closedResolver = done));
 
