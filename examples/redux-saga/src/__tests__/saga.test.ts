@@ -1,18 +1,25 @@
 /**
  * @copyright Romain Bertrand 2018
+ * @copyright AKiomi Kamakura 2023
  */
 
-import WS from 'jest-websocket-mock';
+import type { Store } from 'redux';
+import { WS } from 'vitest-websocket-mock';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+
 import makeStore from '../store';
 import { actions } from '../store/reducer';
 
-let ws, store;
+let ws: WS;
+let store: Store;
+
 beforeEach(async () => {
   ws = new WS('ws://localhost:8080');
   store = makeStore();
   await ws.connected;
   ws.send('Hello there');
 });
+
 afterEach(() => {
   WS.clean();
 });
@@ -92,19 +99,19 @@ describe('The saga', () => {
   });
 
   it('reconnects after losing the ws connection', async () => {
-    // We cannot use jest.useFakeTimers because mock-socket has to work around timing issues
-    jest.spyOn(window, 'setTimeout');
+    // We cannot use vi.useFakeTimers because mock-socket has to work around timing issues
+    const spy = vi.spyOn(window, 'setTimeout');
 
     ws.error();
     await ws.closed;
     expect(store.getState().connected).toBe(false);
 
     // Trigger our delayed reconnection
-    window.setTimeout.mock.calls.forEach(([cb, , ...args]) => cb(...args));
+    spy.mock.calls.forEach(([cb, , ...args]) => cb(...args));
 
     await ws.connected; // reconnected!
     expect(store.getState().connected).toBe(true);
 
-    window.setTimeout.mockRestore();
+    spy.mockRestore();
   });
 });

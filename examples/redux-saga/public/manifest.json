@@ -1,6 +1,6 @@
 {
   "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Vite + React + TS",
   "icons": [
     {
       "src": "favicon.ico",
