@@ -8,13 +8,11 @@ A set of utilities and Vitest matchers to help testing complex websocket interac
 A patched fork of [romgain/jest-websocket-mock](https://github.com/romgain/jest-websocket-mock).
 
 **Examples:**
-~~Several examples are provided in the [examples folder](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/).
-In particular:~~
+Several examples are provided in the [examples folder](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/).
+In particular:
 
-NOTE: These examples are currently not working :cry:
-
-- [testing a redux saga that manages a websocket connection](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/redux-saga/src/__tests__/saga.test.js)
-- [testing a component using the saga above](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/redux-saga/src/__tests__/App.test.js)
+- [testing a redux saga that manages a websocket connection](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/redux-saga/src/__tests__/saga.test.ts)
+- [testing a component using the saga above](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/redux-saga/src/__tests__/App.test.tsx)
 - [testing a component that manages a websocket connection using react hooks](https://github.com/akiomik/vitest-websocket-mock/blob/main/examples/hooks/src/App.test.tsx)
 
 ## Install
@@ -292,7 +290,7 @@ afterEach(() => {
 
 ## Known issues
 
-`mock-socket` has a strong usage of delays (`setTimeout` to be more specific). This means using `vitest.useFakeTimers();` will cause issues such as the client appearing to never connect to the server.
+`mock-socket` has a strong usage of delays (`setTimeout` to be more specific). This means using `vi.useFakeTimers();` will cause issues such as the client appearing to never connect to the server.
 
 While running the websocket server from tests within the vitest-dom environment (as opposed to node)
 you may see errors of the nature:
@@ -343,8 +341,6 @@ restrict yourself to the browser APIs!
 
 ## Examples
 
-~~For a real life example, see the
+For a real life example, see the
 [examples directory](https://github.com/akiomik/vitest-websocket-mock/tree/main/examples),
-and in particular the saga tests.~~
-
-NOTE: These examples are currently not working :cry:
+and in particular the saga tests.
