@@ -2,13 +2,16 @@
  * @copyright Romain Bertrand 2018
  */
 
+import type { Action } from 'redux';
+import type { EventChannel } from 'redux-saga';
 import { eventChannel, END } from 'redux-saga';
 import { cancel, call, delay, fork, put, take } from 'redux-saga/effects';
+import { Effect } from 'redux-saga/effects';
 import { actions } from './reducer';
 
 const RECONNECT_TIMEOUT = 6000;
 
-function websocketInitChannel(connection) {
+function websocketInitChannel(connection: WebSocket): EventChannel<Action<unknown>> {
   return eventChannel((emitter) => {
     const closeCallback = () => {
       emitter(actions.connectionLost());
@@ -29,7 +32,7 @@ function websocketInitChannel(connection) {
   });
 }
 
-function* sendMessage(connection) {
+function* sendMessage<A>(connection: WebSocket): Generator<Effect, A, any> {
   while (true) {
     const { payload } = yield take(actions.send);
     yield put(actions.storeSentMessage(payload));
@@ -37,7 +40,7 @@ function* sendMessage(connection) {
   }
 }
 
-export default function* saga() {
+export default function* saga<A>(): Generator<Effect, A, any> {
   const connection = new WebSocket(`ws://${window.location.hostname}:8080`);
   const channel = yield call(websocketInitChannel, connection);
   yield put(actions.connectionSuccess());
