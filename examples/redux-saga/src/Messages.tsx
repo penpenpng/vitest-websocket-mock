@@ -5,11 +5,11 @@
 
 import { connect } from 'react-redux';
 
-import type { Message } from './store/reducer';
+import type { Message as MessageT } from './store/reducer';
 
-const Message = ({ text, side }: Message) => <div>{`(${side}) ${text}`}</div>;
+const Message = ({ text, side }: MessageT) => <div>{`(${side}) ${text}`}</div>;
 
-const Messages = ({ messages }: { messages: Message[] }) => (
+const Messages = ({ messages }: { messages: MessageT[] }) => (
   <div className="Messages">
     {messages.map((message, i) => (
       <Message key={i} {...message} />
@@ -17,4 +17,4 @@ const Messages = ({ messages }: { messages: Message[] }) => (
   </div>
 );
 
-export default connect((state: { messages: Message[] }) => ({ messages: state.messages }))(Messages);
+export default connect((state: { messages: MessageT[] }) => ({ messages: state.messages }))(Messages);

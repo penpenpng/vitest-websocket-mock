@@ -7,7 +7,7 @@
  * supporting tests.
  **/
 
-const WebSocket = require('ws');
+import { WebSocket } from 'ws';
 
 const PORT = 8080;
 const server = new WebSocket.Server({ port: PORT });

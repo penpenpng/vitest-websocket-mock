@@ -5,7 +5,7 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { afterAll, afterEach, expect, describe, it } from 'vitest';
+import { afterAll, afterEach, describe, expect, it } from 'vitest';
 import { WS } from 'vitest-websocket-mock';
 
 import App from './App';

@@ -2,8 +2,8 @@
  * @copyright Romain Bertrand 2018
  */
 
-import { createActions, handleActions, combineActions } from 'redux-actions';
-import type { ActionFunctionAny, Action } from 'redux-actions';
+import type { Action, ActionFunctionAny } from 'redux-actions';
+import { combineActions, createActions, handleActions } from 'redux-actions';
 
 export interface Message {
   text: string;
@@ -24,7 +24,7 @@ const defaultState: State = {
   connected: false,
 };
 
-export const actions: { [actionName: string]: ActionFunctionAny<Action<any>> } = createActions({
+export const actions: { [actionName: string]: ActionFunctionAny<Action<unknown>> } = createActions({
   STORE_SENT_MESSAGE: (text: string): Message => ({ text, side: 'sent' }),
   STORE_RECEIVED_MESSAGE: (text: string): Message => ({ text, side: 'received' }),
   SEND: undefined,

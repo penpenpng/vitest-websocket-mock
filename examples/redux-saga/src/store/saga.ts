@@ -4,9 +4,10 @@
 
 import type { Action } from 'redux';
 import type { EventChannel } from 'redux-saga';
-import { eventChannel, END } from 'redux-saga';
-import { cancel, call, delay, fork, put, take } from 'redux-saga/effects';
+import { END, eventChannel } from 'redux-saga';
+import { call, cancel, delay, fork, put, take } from 'redux-saga/effects';
 import { Effect } from 'redux-saga/effects';
+
 import { actions } from './reducer';
 
 const RECONNECT_TIMEOUT = 6000;
@@ -32,6 +33,7 @@ function websocketInitChannel(connection: WebSocket): EventChannel<Action<unknow
   });
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function* sendMessage<A>(connection: WebSocket): Generator<Effect, A, any> {
   while (true) {
     const { payload } = yield take(actions.send);
@@ -40,6 +42,7 @@ function* sendMessage<A>(connection: WebSocket): Generator<Effect, A, any> {
   }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function* saga<A>(): Generator<Effect, A, any> {
   const connection = new WebSocket(`ws://${window.location.hostname}:8080`);
   const channel = yield call(websocketInitChannel, connection);
@@ -56,6 +59,6 @@ export default function* saga<A>(): Generator<Effect, A, any> {
     yield cancel(sendMessageTask);
     // ...and start again
     yield delay(RECONNECT_TIMEOUT);
-    return yield call(saga);
+    yield call(saga);
   }
 }
