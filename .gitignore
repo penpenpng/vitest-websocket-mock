@@ -8,7 +8,7 @@ coverage
 
 # production
 dist
-jest-websocket-mock-*.tgz
+vitest-websocket-mock-*.tgz
 
 # misc
 .DS_Store
