@@ -23,7 +23,7 @@ afterEach(() => {
 
 describe('The App component', () => {
   it('renders a dot indicating the connection status', async () => {
-    render(<App port={8080} />);
+    render(<App />);
     expect(screen.getByTitle('disconnected')).toBeInTheDocument();
 
     await ws.connected;
@@ -37,7 +37,7 @@ describe('The App component', () => {
   it('sends and receives messages', async () => {
     const user = userEvent.setup();
 
-    render(<App port={8080} />);
+    render(<App />);
     await ws.connected;
 
     const input = screen.getByPlaceholderText('type your message here...');

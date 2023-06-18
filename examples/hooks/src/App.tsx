@@ -8,19 +8,19 @@ import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 type MessageProps = { text: string; side: 'sent' | 'received' };
 const Message = ({ text, side }: MessageProps) => <div>{`(${side}) ${text}`}</div>;
 
-function App({ port = 8080 }: { port?: number }) {
+function App() {
   const wsRef = useRef<WebSocket>();
   const [connected, setConnected] = useState(false);
   const [messages, setMessages] = useState<MessageProps[]>([]);
   const [currentMessage, setCurrentMessage] = useState('');
 
   useEffect(() => {
-    const ws = new WebSocket(`ws://${window.location.hostname}:${port}`);
+    const ws = new WebSocket(`ws://${window.location.hostname}:8080`);
     ws.onopen = () => setConnected(true);
     ws.onclose = () => setConnected(false);
     ws.onmessage = (event) => setMessages((m) => [{ side: 'received', text: event.data }, ...m]);
     wsRef.current = ws;
-  }, [port]);
+  }, []);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => setCurrentMessage(event.target.value);
   const send = (event: FormEvent<HTMLFormElement>) => {
