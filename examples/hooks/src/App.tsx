@@ -3,7 +3,7 @@
  * @copyright Akiomi Kamakura 2023
  */
 
-import { useState, ChangeEvent, FormEvent, useEffect, useRef } from 'react';
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from 'react';
 
 type MessageProps = { text: string; side: 'sent' | 'received' };
 const Message = ({ text, side }: MessageProps) => <div>{`(${side}) ${text}`}</div>;
@@ -20,12 +20,17 @@ function App({ port = 8080 }: { port?: number }) {
     ws.onclose = () => setConnected(false);
     ws.onmessage = (event) => setMessages((m) => [{ side: 'received', text: event.data }, ...m]);
     wsRef.current = ws;
-  }, []);
+  }, [port]);
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => setCurrentMessage(event.target.value);
   const send = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    wsRef.current!.send(currentMessage);
+
+    if (!wsRef.current) {
+      throw new Error('wsRef.current is undefind');
+    }
+
+    wsRef.current.send(currentMessage);
     setCurrentMessage('');
     setMessages((m) => [{ side: 'sent', text: currentMessage }, ...m]);
   };

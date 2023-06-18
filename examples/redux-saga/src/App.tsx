@@ -3,8 +3,8 @@
  */
 
 import ConnectionIndicator from './ConnectionIndicator';
-import Messages from './Messages';
 import MessageInput from './MessageInput';
+import Messages from './Messages';
 
 const App = () => (
   <div className="App">

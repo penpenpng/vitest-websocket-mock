@@ -4,8 +4,8 @@
  */
 
 import type { Store } from 'redux';
-import { WS } from 'vitest-websocket-mock';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { WS } from 'vitest-websocket-mock';
 
 import makeStore from '../store';
 import { actions } from '../store/reducer';

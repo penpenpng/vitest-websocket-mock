@@ -5,8 +5,8 @@
 
 import { afterEach, describe, expect, it } from 'vitest';
 
-import { render, screen, userEvent } from '../test-utils';
 import App from '../App';
+import { render, screen, userEvent } from '../test-utils';
 
 afterEach(async () => {
   document.getElementsByTagName('body')[0].innerHTML = ''; // Clear jsdom rendering

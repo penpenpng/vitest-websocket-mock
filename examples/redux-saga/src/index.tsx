@@ -3,11 +3,13 @@
  * @copyright Akiomi Kamakura 2023
  */
 
+import './styles.css';
+
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import './styles.css';
-import makeStore from './store';
+
 import App from './App';
+import makeStore from './store';
 
 const store = makeStore();
 

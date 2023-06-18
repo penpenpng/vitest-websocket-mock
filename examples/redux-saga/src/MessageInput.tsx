@@ -5,11 +5,11 @@
 
 import { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import type { ActionFunctionAny, Action } from 'redux-actions';
+import type { Action, ActionFunctionAny } from 'redux-actions';
 
 import { actions } from './store/reducer';
 
-class MessageInput extends PureComponent<{ send: ActionFunctionAny<Action<any>> }> {
+class MessageInput extends PureComponent<{ send: ActionFunctionAny<Action<unknown>> }> {
   state = { message: '' };
 
   onChange = (event: React.ChangeEvent<HTMLInputElement>) => this.setState({ message: event.target.value });

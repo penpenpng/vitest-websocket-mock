@@ -3,11 +3,11 @@
  * @copyright AKiomi Kamakura 2023
  */
 
-import type { ReactNode } from 'react';
 import { render } from '@testing-library/react';
+import type { ReactNode } from 'react';
 import { Provider } from 'react-redux';
-import { WS } from 'vitest-websocket-mock';
 import { afterEach } from 'vitest';
+import { WS } from 'vitest-websocket-mock';
 
 import makeStore from './store';
 
