@@ -68,7 +68,7 @@ export const deriveToReceiveMessage = (name: string, fn: RawMatcherFn): RawMatch
       };
     } else {
       const received = messageOrTimeout;
-      const result = await Promise.resolve(fn.bind(this)(received, expected, options));
+      const result = await Promise.resolve(fn.call(this, received, expected, options));
 
       return { name, ...result };
     }
@@ -117,7 +117,7 @@ export const deriveToHaveReceivedMessage = (name: string, fn: RawMatcherFn): Raw
       };
     }
 
-    const result = fn.bind(this)(ws.messages, expected);
+    const result = fn.call(this, ws.messages, expected);
     return { name, ...result };
   };
 };
