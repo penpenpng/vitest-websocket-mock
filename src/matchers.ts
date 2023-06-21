@@ -30,7 +30,7 @@ declare module 'vitest' {
 }
 
 const WAIT_DELAY = 1000;
-const TIMEOUT = Symbol('timoeut');
+const TIMEOUT = Symbol('timeout');
 
 const makeInvalidWsMessage = function makeInvalidWsMessage(this: MatcherState, ws: WS, matcher: string) {
   return (
