@@ -15,14 +15,6 @@ interface WSOptions extends ServerOptions {
 }
 export type DeserializedMessage<TMessage = object> = string | TMessage;
 
-// The WebSocket object passed to the `connection` callback is actually
-// a WebSocket proxy that overrides the signature of the `close` method.
-// To work around this inconsistency, we need to override the WebSocket
-// interface. See https://github.com/romgain/jest-websocket-mock/issues/26#issuecomment-571579567
-interface MockWebSocket extends Omit<Client, 'close'> {
-  close(options?: CloseOptions): void;
-}
-
 export default class WS {
   server: Server;
   serializer: (deserializedMessage: DeserializedMessage) => string;
@@ -101,7 +93,7 @@ export default class WS {
     return this.messagesToConsume.get();
   }
 
-  on(eventName: 'connection' | 'message' | 'close', callback: (socket: MockWebSocket) => void): void {
+  on(eventName: 'connection' | 'message' | 'close', callback: (socket: Client) => void): void {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore https://github.com/romgain/jest-websocket-mock/issues/26#issuecomment-571579567
     this.server.on(eventName, callback);
