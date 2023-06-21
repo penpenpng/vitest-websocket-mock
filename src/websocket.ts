@@ -94,8 +94,6 @@ export default class WS {
   }
 
   on(eventName: 'connection' | 'message' | 'close', callback: (socket: Client) => void): void {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore https://github.com/romgain/jest-websocket-mock/issues/26#issuecomment-571579567
     this.server.on(eventName, callback);
   }
 
