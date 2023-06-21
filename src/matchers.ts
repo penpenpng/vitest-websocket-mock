@@ -108,7 +108,7 @@ const toReceiveMessage = deriveToReceiveMessage('toReceiveMessage', function (re
 });
 
 export const deriveToHaveReceivedMessage = (name: string, fn: RawMatcherFn): RawMatcherFn => {
-  return function (ws: WS, expected: Array<DeserializedMessage>) {
+  return function (ws: WS, expected: Array<DeserializedMessage>, options?: unknown) {
     const isWS = ws instanceof WS;
     if (!isWS) {
       return {
@@ -117,7 +117,7 @@ export const deriveToHaveReceivedMessage = (name: string, fn: RawMatcherFn): Raw
       };
     }
 
-    const result = fn.call(this, ws.messages, expected);
+    const result = fn.call(this, ws.messages, expected, options);
     return { name, ...result };
   };
 };
